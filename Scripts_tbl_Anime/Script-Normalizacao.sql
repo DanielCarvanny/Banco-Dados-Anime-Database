@@ -100,6 +100,9 @@ create table Score(
 	ranked int,
 	score numeric(3,2)
 );
+ALTER TABLE Score
+    ALTER COLUMN score_id DROP DEFAULT,
+    ALTER COLUMN score_id ADD GENERATED ALWAYS AS IDENTITY;
 
 -- Tabela Normalizada
 create table Anime(
