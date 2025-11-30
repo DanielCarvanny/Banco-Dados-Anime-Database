@@ -98,7 +98,7 @@ create table Score(
 	"score-10" int,
 	score_id int primary key not null,
 	ranked int,
-	score numeric(3,2)
+	average_score numeric(3,2)
 );
 ALTER TABLE Score
     ALTER COLUMN score_id DROP DEFAULT,

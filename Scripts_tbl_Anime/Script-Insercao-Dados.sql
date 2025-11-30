@@ -100,7 +100,7 @@ select ag.anime_id, ag.genre_id, g."name" from Anime_Genre ag join Genre g on g.
 INSERT INTO Score(
     "score-1", "score-2", "score-3", "score-4", "score-5",
     "score-6", "score-7", "score-8", "score-9", "score-10",
-    ranked, score, anime_id
+    ranked, average_score, anime_id
 )
 SELECT
     "score-1", "score-2", "score-3", "score-4", "score-5",
