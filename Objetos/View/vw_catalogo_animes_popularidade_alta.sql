@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW catalogo_animes_famosos AS
+CREATE OR REPLACE VIEW vw_catalogo_animes_popularidade_alta AS
 SELECT 
     a.name AS anime,
     string_agg(g.name, ', ') AS generos,
@@ -26,3 +26,4 @@ GROUP BY
     a.premiered, 
     aws.sypnopsis 
 ;
+
