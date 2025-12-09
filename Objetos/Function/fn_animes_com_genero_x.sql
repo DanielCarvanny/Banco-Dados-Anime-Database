@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION animes_generos (input_gen text)
+CREATE OR REPLACE FUNCTION fn_animes_com_genero_x (input_gen text)
 RETURNS TABLE(nome text, score numeric)
 AS$$
 Begin
@@ -18,4 +18,5 @@ Begin
     ORDER BY s.average_score DESC;
 
 END;
+
 $$LANGUAGE plpgsql;
