@@ -38,8 +38,8 @@ CREATE TABLE "Projeto-Anime".anime_temp (
 );
 
 --Tabela anime não normalizada com os tipos de dados corretos
-DROP TABLE IF EXISTS "Projeto-Anime".anime;
-CREATE TABLE "Projeto-Anime"."anime" (
+DROP TABLE IF EXISTS "Projeto-Anime".anime_nao_normalizada;
+CREATE TABLE "Projeto-Anime".anime_nao_normalizada (
 	mal_id int NULL,
 	"name" text NULL,
 	score decimal(3,2) NULL,
@@ -78,7 +78,7 @@ CREATE TABLE "Projeto-Anime"."anime" (
 );
 
 -- Transferência de dados entre as tabelas
-INSERT INTO "Projeto-Anime".anime (
+INSERT INTO "Projeto-Anime".anime_nao_normalizada (
     mal_id,
     "name",
     score,
@@ -152,4 +152,3 @@ SELECT
     CASE WHEN "score-2"  ~ '^[0-9]+(\.[0-9]+)?$' THEN cast(REPLACE("score-2",'.0','') as INT) ELSE NULL END,
     CASE WHEN "score-1"  ~ '^[0-9]+(\.[0-9]+)?$' THEN cast(REPLACE("score-1",'.0','') as INT) ELSE NULL END
 FROM anime_temp;
-

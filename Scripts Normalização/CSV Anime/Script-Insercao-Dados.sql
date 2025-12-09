@@ -58,8 +58,6 @@ CROSS JOIN LATERAL unnest(string_to_array(ann.producers, ',')) AS prod(name)
 JOIN Producer p ON p.name = trim(prod.name)
 WHERE ann.producers IS NOT NULL AND ann.producers <> '';
 
-select ap.anime_id, ap.producers_id, p."name" from Anime_Producers ap join producer p on p.id = ap.producers_id;
-
 -- Tabela Anime_Studio
 INSERT INTO Anime_Studio(anime_id, studio_id)
 SELECT
@@ -69,8 +67,6 @@ FROM anime_nao_normalizada ann
 CROSS JOIN LATERAL unnest(string_to_array(ann.studios, ',')) AS st(name)
 JOIN Studio s ON s.name = trim(st.name)
 WHERE ann.studios IS NOT NULL AND ann.studios <> '';
-
-select "as".anime_id, "as".studio_id, s."name" from Anime_Studio "as" join Studio s on s.id = "as".studio_id;
 
 -- Tabela Anime_Licensors
 INSERT INTO Anime_Licensors(anime_id, licensors_id)
@@ -82,8 +78,6 @@ CROSS JOIN LATERAL unnest(string_to_array(ann.licensors, ',')) AS lic(name)
 JOIN Licensors l ON l.name = trim(lic.name)
 WHERE ann.licensors IS NOT NULL AND ann.licensors <> '';
 
-select al.anime_id, al.licensors_id, l."name" from Anime_Licensors al join Licensors l on l.id = al.licensors_id;
-
 -- Tabela Anime_Genre
 INSERT INTO Anime_Genre(anime_id, genre_id)
 SELECT
@@ -94,12 +88,10 @@ CROSS JOIN LATERAL unnest(string_to_array(ann.genres, ',')) AS gen(name)
 JOIN Genre g ON g.name = trim(gen.name)
 WHERE ann.genres IS NOT NULL AND ann.genres <> '';
 
-select ag.anime_id, ag.genre_id, g."name" from Anime_Genre ag join Genre g on g.id = ag.genre_id where g."name" = 'Game';
-
 -- Tabela Score
 INSERT INTO Score(
-    "score-1", "score-2", "score-3", "score-4", "score-5",
-    "score-6", "score-7", "score-8", "score-9", "score-10",
+    score_1, score_2, score_3, score_4, score_5,
+    score_6, score_7, score_8, score_9, score_10,
     ranked, average_score, anime_id
 )
 SELECT
