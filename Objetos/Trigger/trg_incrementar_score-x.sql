@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION func_att_score()
+CREATE OR REPLACE FUNCTION fn_incrementar_score-x()
 RETURNS TRIGGER
 AS $$
 BEGIN
@@ -26,42 +26,12 @@ BEGIN
             THEN "score-10" + 1 ELSE "score-10" END
     WHERE Score.anime_id = NEW.anime_id;
 
-    UPDATE Score s
-    SET average_score = (
-        ( 
-        "score-1" * 1 +
-        "score-2" * 2 +
-        "score-3" * 3 +
-        "score-4" * 4 +
-        "score-5" * 5 +
-        "score-6" * 6 +
-        "score-7" * 7 +
-        "score-8" * 8 +
-        "score-9" * 9 +
-        "score-10" * 10
-        )
-        ::float /
-        ( 
-        "score-1" +
-        "score-2" +
-        "score-3" +
-        "score-4" +
-        "score-5" +
-        "score-6" +
-        "score-7" +
-        "score-8" +
-        "score-9" +
-        "score-10"
-        )
-    )
-    WHERE s.anime_id = NEW.anime_id;
-
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE TRIGGER att_score
+CREATE OR REPLACE TRIGGER trg_incrementar_score-x
 AFTER INSERT ON animelist_normalizada
 FOR EACH ROW
-EXECUTE FUNCTION func_att_score();
+EXECUTE FUNCTION fn_incrementar_score-x();
