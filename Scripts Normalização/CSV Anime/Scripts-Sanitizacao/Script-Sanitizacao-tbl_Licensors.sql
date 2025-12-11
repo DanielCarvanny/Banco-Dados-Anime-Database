@@ -22,6 +22,16 @@ DELETE FROM Studio WHERE name = 'Unknown';
 SELECT COUNT(*) as unknown_remaining 
 FROM Studio WHERE name = 'Unknown';
 
+DELETE FROM Anime_Licensors 
+WHERE licensors_id = (SELECT id FROM Licensors WHERE name = 'Unknown');
+
+-- Remover o registro "Unknown"
+DELETE FROM Licensors WHERE name = 'Unknown';
+
+-- Verificar se tudo ok
+SELECT COUNT(*) as unknown_remaining 
+FROM Licensors WHERE name = 'Unknown';
+
 -- Se count = 0, confirme:
 COMMIT;
 
