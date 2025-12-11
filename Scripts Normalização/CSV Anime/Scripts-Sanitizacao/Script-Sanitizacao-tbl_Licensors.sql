@@ -12,6 +12,16 @@ WHERE licensors_id = (SELECT id FROM Licensors WHERE name = 'Unknown');
 -- Remover relacionamentos
 BEGIN TRANSACTION;  -- Inicia transação (seguro)
 
+DELETE FROM Anime_Studio 
+WHERE studio_id = (SELECT id FROM Studio WHERE name = 'Unknown');
+
+-- Remover o registro "Unknown"
+DELETE FROM Studio WHERE name = 'Unknown';
+
+-- Verificar se tudo ok
+SELECT COUNT(*) as unknown_remaining 
+FROM Studio WHERE name = 'Unknown';
+
 DELETE FROM Anime_Licensors 
 WHERE licensors_id = (SELECT id FROM Licensors WHERE name = 'Unknown');
 
