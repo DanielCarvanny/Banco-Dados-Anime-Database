@@ -48,4 +48,8 @@ ALTER TABLE animelist_temp DROP CONSTRAINT animelist_temp_pkey;
 ALTER TABLE animelist_normalizada RENAME COLUMN rating TO score;
 ALTER TABLE animelist_normalizada RENAME COLUMN watching_status TO status;
 
-
+-- 4º Criando colunas created_at e updated_at  
+--facilita auditoria e restreabilidade, CRIANDO colunas created_at e updated_at.
+ALTER TABLE animelist_normalizada
+	ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW(),
+	ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
