@@ -19,3 +19,8 @@ SELECT
     watched_episodes
 FROM animelist_temp
 ON CONFLICT (user_id, anime_id) DO NOTHING;
+
+-- 3º Inserindo dados tabela usuário:
+INSERT INTO usuario (id)
+SELECT DISTINCT user_id
+FROM animelist_temp;

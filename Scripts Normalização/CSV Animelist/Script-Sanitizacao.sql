@@ -53,3 +53,18 @@ ALTER TABLE animelist_normalizada RENAME COLUMN watching_status TO status;
 ALTER TABLE animelist_normalizada
 	ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW(),
 	ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
+
+-- 5º Criando tabela usuário:
+
+Table: public.usuario
+DROP TABLE IF EXISTS public.usuario;
+
+CREATE TABLE IF NOT EXISTS public.usuario
+(
+    id integer NOT NULL,
+    CONSTRAINT usuario_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+ALTER TABLE IF EXISTS public.usuario
+    OWNER to postgres;
