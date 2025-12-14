@@ -37,6 +37,6 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_atualizar_status
 BEFORE UPDATE OF watched_episodes 
-ON animelist_normalizada
+ON animelist
 FOR EACH ROW 
 EXECUTE FUNCTION fn_atualizar_status();

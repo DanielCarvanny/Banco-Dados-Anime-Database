@@ -18,7 +18,7 @@ BEGIN
             COUNT(*) FILTER (WHERE ws.description = 'On Hold')            AS "on-hold",
             COUNT(*) FILTER (WHERE ws.description = 'Dropped')            AS dropped,
             COUNT(*) FILTER (WHERE ws.description = 'Plan to Watch')      AS plan_to_watch
-        FROM animelist_normalizada al
+        FROM animelist al
         JOIN watching_status ws
             ON al.watching_status = ws.id_status
         GROUP BY al.anime_id

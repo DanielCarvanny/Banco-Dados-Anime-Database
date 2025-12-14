@@ -9,7 +9,7 @@ BEGIN
 	SELECT 
 		watched_episodes
 		INTO eps_watched
-	FROM animelist_normalizada
+	FROM animelist
 	WHERE 
 		user_id = input_user_id 
 		AND anime_id = input_anime_id;
