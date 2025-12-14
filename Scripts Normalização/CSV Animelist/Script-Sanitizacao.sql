@@ -1,7 +1,7 @@
 -- 1º Criar uma tabela normalizada:
 
-DROP TABLE IF EXISTS public.animelist_normalizada;
-CREATE TABLE IF NOT EXISTS public.animelist_normalizada
+DROP TABLE IF EXISTS "Projeto-Anime".animelist_normalizada;
+CREATE TABLE IF NOT EXISTS "Projeto-Anime".animelist_normalizada
 (
     user_id integer NOT NULL,
     anime_id integer NOT NULL,
@@ -10,25 +10,25 @@ CREATE TABLE IF NOT EXISTS public.animelist_normalizada
     watched_episodes integer,
     CONSTRAINT animelist_pkey PRIMARY KEY (user_id, anime_id),
     CONSTRAINT animelist_normalizada_anime_id_fkey FOREIGN KEY (anime_id)
-        REFERENCES public.anime (id) MATCH SIMPLE
+        REFERENCES "Projeto-Anime".anime (mal_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
     CONSTRAINT animelist_normalizada_user_id_fkey FOREIGN KEY (user_id)
-        REFERENCES public.usuario (id) MATCH SIMPLE
+        REFERENCES "Projeto-Anime".usuario (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
 
 TABLESPACE pg_default;
-ALTER TABLE IF EXISTS public.animelist_normalizada
+ALTER TABLE IF EXISTS "Projeto-Anime".animelist_normalizada
     OWNER to postgres;
 
 
 -- 2º Criando tabela temporária a partir da normalizada
 -- para a insersão de todos os dados:
 
-DROP TABLE IF EXISTS public.animelist_temp;
-CREATE TABLE IF NOT EXISTS public.animelist_temp
+DROP TABLE IF EXISTS "Projeto-Anime".animelist_temp;
+CREATE TABLE IF NOT EXISTS "Projeto-Anime".animelist_temp
 (
     user_id integer NOT NULL,
     anime_id integer NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS public.animelist_temp
 )
 
 TABLESPACE pg_default;
-ALTER TABLE IF EXISTS public.animelist_temp
+ALTER TABLE IF EXISTS "Projeto-Anime".animelist_temp
     OWNER to postgres;
 
 -- 2.2 Modificação na tabela animelist_temp(temporária) para aceitar dados duplicados:
