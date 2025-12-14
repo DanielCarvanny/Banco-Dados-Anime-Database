@@ -15,7 +15,7 @@ DECLARE
 	v_old_status	INT;
 
 	-- insert/update:
-	v_row 			animelist_normalizada%ROWTYPE;
+	v_row 			animelist%ROWTYPE;
 BEGIN
 
 
@@ -59,7 +59,7 @@ BEGIN
 	SELECT 
 	*
 	INTO v_row
-	FROM animelist_normalizada
+	FROM animelist
 	WHERE user_id = p_user_id AND anime_id = p_anime_id;
 
 	IF FOUND THEN -- trava a linha se existir -- 
@@ -93,14 +93,14 @@ BEGIN
 	----------------------------------------------------------------
 	
 	IF v_exists THEN 
-		UPDATE animelist_normalizada
+		UPDATE animelist
 		SET 
 			score = p_score,
 			status = p_status,
 			watched_episodes = p_new_watched
 		WHERE user_id = p_user_id AND anime_id = p_anime_id;
 	ELSE 
-		INSERT INTO animelist_normalizada(
+		INSERT INTO animelist(
 			user_id,
 			anime_id,
 			score,

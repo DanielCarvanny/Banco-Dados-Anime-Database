@@ -8,7 +8,7 @@ SELECT
 	ROUND(AVG(an.score), 2) AS media_score,
 	COUNT(CASE WHEN an.status = '2' THEN 1 END) AS total_animes_completos,
 	COUNT(CASE WHEN an.status = '1' THEN 1 END) AS total_animes_assistindo
-FROM animelist_normalizada an
+FROM animelist an
 GROUP BY user_id
 
 -- 2º total de eps por gênero
@@ -17,7 +17,7 @@ SELECT
 	g.name AS genero,
 	COUNT(DISTINCT an.anime_id) AS total_animes_genero,
 	SUM(watched_episodes) AS total_eps_genero
-FROM animelist_normalizada an
+FROM animelist an
 JOIN anime a
 	ON a.mal_id = an.anime_id
 JOIN anime_genre ag 
@@ -36,7 +36,7 @@ SELECT
 		PARTITION BY user_id
 		ORDER BY watched_episodes DESC
 	) AS ranking_episodios_usuarios
-FROM animelist_normalizada;
+FROM animelist;
 
 
 
@@ -53,7 +53,7 @@ cte_perfil_usuario AS (
 			ROUND(AVG(an.score), 2) AS media_score,
 			COUNT(CASE WHEN an.status = '2' THEN 1 END) AS total_animes_completos,
 			COUNT(CASE WHEN an.status = '1' THEN 1 END) AS total_animes_assistindo
-		FROM animelist_normalizada an
+		FROM animelist an
 		GROUP BY user_id
 	),
 
@@ -65,7 +65,7 @@ cte_genero AS (
 			g.name AS genero,
 			COUNT(DISTINCT an.anime_id) AS total_animes_genero,
 			SUM(an.watched_episodes) AS total_eps_genero
-		FROM animelist_normalizada an
+		FROM animelist an
 		JOIN anime a
 			ON a.mal_id = an.anime_id
 		JOIN anime_genre ag 
